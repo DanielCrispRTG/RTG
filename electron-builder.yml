@@ -1,5 +1,5 @@
-appId: com.guasam.era
-productName: ElectronReactApp
+appId: com.rtg.taskmanager
+productName: RTG Task Manager
 directories:
   buildResources: resources/build
 files:
@@ -12,7 +12,7 @@ files:
 asarUnpack:
   - resources/**
 win:
-  executableName: ElectronReactApp
+  executableName: RTG Task Manager
 nsis:
   artifactName: ${name}-${version}-setup.${ext}
   shortcutName: ${productName}

@@ -1,7 +1,7 @@
 {
-  "name": "era",
+  "name": "rtg-task-manager",
   "version": "11.0.0",
-  "description": "A modern Electron application template with React, Vite, TypeScript, Shadcn UI and TailwindCSS",
+  "description": "RTG Task Manager - A modern desktop task management application built with Electron, React, TypeScript, and TailwindCSS",
   "main": "./out/main/main.js",
   "license": "MIT",
   "author": {
