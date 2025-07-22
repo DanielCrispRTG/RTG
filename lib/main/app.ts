@@ -5,8 +5,10 @@ import appIcon from '@/resources/build/icon.png?asset'
 import { pathToFileURL } from 'url'
 
 export function createAppWindow(): void {
-  // Register custom protocol for resources
-  registerResourcesProtocol()
+  // Register custom protocol for resources (only if not already registered)
+  if (!protocol.isProtocolHandled('res')) {
+    registerResourcesProtocol()
+  }
 
   // Create the main window.
   const mainWindow = new BrowserWindow({
