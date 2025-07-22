@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { AppWindow, CheckSquare, Calculator, FileText, Music, Settings } from 'lucide-react'
+import { AppWindow, CheckSquare, Calculator as CalculatorIcon, FileText, Music, Settings } from 'lucide-react'
 import { Button } from '@/app/components/ui/button'
 import TaskManager from '@/app/components/apps/TaskManager'
 import Calculator from '@/app/components/apps/Calculator'
@@ -10,7 +10,7 @@ type AppType = 'welcome' | 'tasks' | 'calculator' | 'notes' | 'music' | 'setting
 const apps = [
   { id: 'welcome' as AppType, name: 'Welcome', icon: AppWindow, description: 'Framework Demo' },
   { id: 'tasks' as AppType, name: 'Task Manager', icon: CheckSquare, description: 'Organize your tasks' },
-  { id: 'calculator' as AppType, name: 'Calculator', icon: Calculator, description: 'Math calculations' },
+  { id: 'calculator' as AppType, name: 'Calculator', icon: CalculatorIcon, description: 'Math calculations' },
   { id: 'notes' as AppType, name: 'Notes', icon: FileText, description: 'Take notes' },
   { id: 'music' as AppType, name: 'Music Player', icon: Music, description: 'Play your music' },
   { id: 'settings' as AppType, name: 'Settings', icon: Settings, description: 'App preferences' },
