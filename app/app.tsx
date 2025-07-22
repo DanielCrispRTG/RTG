@@ -1,5 +1,5 @@
-import TaskManager from '@/app/components/TaskManager'
+import AppLauncher from '@/app/components/AppLauncher'
 
 export default function App() {
-  return <TaskManager />
+  return <AppLauncher />
 }
