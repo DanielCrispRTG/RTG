@@ -1,5 +1,5 @@
-import WelcomeKit from '@/app/components/welcome/WelcomeKit'
+import TaskManager from '@/app/components/TaskManager'
 
 export default function App() {
-  return <WelcomeKit />
+  return <TaskManager />
 }
