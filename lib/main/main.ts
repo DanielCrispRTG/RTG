@@ -1,6 +1,6 @@
 import { app, BrowserWindow } from 'electron'
 import { electronApp, optimizer } from '@electron-toolkit/utils'
-import { createAppWindow } from './app'
+import { createAppWindow, registerResourcesProtocol } from './app'
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
@@ -8,6 +8,10 @@ import { createAppWindow } from './app'
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+  
+  // Register custom protocol first (only once)
+  registerResourcesProtocol()
+  
   // Create app window
   createAppWindow()
 
@@ -34,6 +38,11 @@ app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {
     app.quit()
   }
+})
+
+// Clean up when app is about to quit
+app.on('before-quit', () => {
+  console.log('🛑 App is quitting...')
 })
 
 // In this file, you can include the rest of your app's specific main process

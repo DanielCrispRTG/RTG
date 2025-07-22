@@ -5,11 +5,6 @@ import appIcon from '@/resources/build/icon.png?asset'
 import { pathToFileURL } from 'url'
 
 export function createAppWindow(): void {
-  // Register custom protocol for resources (only if not already registered)
-  if (!protocol.isProtocolHandled('res')) {
-    registerResourcesProtocol()
-  }
-
   // Create the main window.
   const mainWindow = new BrowserWindow({
     width: 900,
@@ -49,18 +44,28 @@ export function createAppWindow(): void {
   }
 }
 
-// Register custom protocol for assets
-function registerResourcesProtocol() {
-  protocol.handle('res', async (request) => {
-    try {
-      const url = new URL(request.url)
-      // Combine hostname and pathname to get the full path
-      const fullPath = join(url.hostname, url.pathname.slice(1))
-      const filePath = join(__dirname, '../../resources', fullPath)
-      return net.fetch(pathToFileURL(filePath).toString())
-    } catch (error) {
-      console.error('Protocol error:', error)
-      return new Response('Resource not found', { status: 404 })
+// Register custom protocol for assets with error handling
+export function registerResourcesProtocol() {
+  try {
+    if (!protocol.isProtocolHandled('res')) {
+      protocol.handle('res', async (request) => {
+        try {
+          const url = new URL(request.url)
+          // Combine hostname and pathname to get the full path
+          const fullPath = join(url.hostname, url.pathname.slice(1))
+          const filePath = join(__dirname, '../../resources', fullPath)
+          return net.fetch(pathToFileURL(filePath).toString())
+        } catch (error) {
+          console.error('Protocol error:', error)
+          return new Response('Resource not found', { status: 404 })
+        }
+      })
+      console.log('✅ Protocol "res" registered successfully')
+    } else {
+      console.log('⚠️ Protocol "res" already registered')
     }
-  })
+  } catch (error) {
+    console.error('Failed to register protocol:', error)
+    // Don't throw - just log the error and continue
+  }
 }
